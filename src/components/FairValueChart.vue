@@ -1,74 +1,74 @@
 
 <template>
-  <div class="apexcharts-toolbar">
-    <div class="apexcharts-toolbar-custom-icon">
-      <span
-        class="
-          custom-toolbar-icon
-          custom-icon__10y
-          mr-2
-          inline-block
-          text-gray-800
-          dark:text-brand-white
-          hover:underline
-          text-base
-        "
-        @click="changeFairValueCalcTime(1)"
-        >1Y</span
-      >
-    </div>
-    <div class="apexcharts-toolbar-custom-icon">
-      <span
-        class="
-          custom-toolbar-icon
-          custom-icon__10y
-          mr-2
-          inline-block
-          text-gray-800
-          dark:text-brand-white
-          hover:underline
-          text-base
-        "
-        @click="changeFairValueCalcTime(3)"
-        >3Y</span
-      >
-    </div>
-    <div class="apexcharts-toolbar-custom-icon">
-      <span
-        class="
-          custom-toolbar-icon
-          custom-icon__10y
-          mr-2
-          inline-block
-          text-gray-800
-          dark:text-brand-white
-          hover:underline
-          text-base
-        "
-        @click="changeFairValueCalcTime(5)"
-        >5Y</span
-      >
-    </div>
-    <div class="apexcharts-toolbar-custom-icon">
-      <span
-        class="
-          custom-toolbar-icon
-          custom-icon__10y
-          mr-2
-          inline-block
-          text-gray-800
-          dark:text-brand-white
-          hover:underline
-          text-base
-        "
-        @click="changeFairValueCalcTime(10)"
-        >10Y</span
-      >
-    </div>
-  </div>
-
   <div class="flex flew-row w-full">
-    <div class="justify-center w-full p-10" id="chartplh"></div>
+    <div class="justify-center w-full p-10" id="chartplh">
+      <div class="apexcharts-toolbar" style="top: 0px; right: 3px">
+        <div class="apexcharts-toolbar-custom-icon">
+          <span
+            class="
+              custom-toolbar-icon
+              custom-icon__10y
+              mr-2
+              inline-block
+              text-gray-800
+              dark:text-brand-white
+              hover:underline
+              text-base
+            "
+            @click="changeFairValueCalcTime(1)"
+            >1Y</span
+          >
+        </div>
+        <div class="apexcharts-toolbar-custom-icon">
+          <span
+            class="
+              custom-toolbar-icon
+              custom-icon__10y
+              mr-2
+              inline-block
+              text-gray-800
+              dark:text-brand-white
+              hover:underline
+              text-base
+            "
+            @click="changeFairValueCalcTime(3)"
+            >3Y</span
+          >
+        </div>
+        <div class="apexcharts-toolbar-custom-icon">
+          <span
+            class="
+              custom-toolbar-icon
+              custom-icon__10y
+              mr-2
+              inline-block
+              text-gray-800
+              dark:text-brand-white
+              hover:underline
+              text-base
+            "
+            @click="changeFairValueCalcTime(5)"
+            >5Y</span
+          >
+        </div>
+        <div class="apexcharts-toolbar-custom-icon">
+          <span
+            class="
+              custom-toolbar-icon
+              custom-icon__10y
+              mr-2
+              inline-block
+              text-gray-800
+              dark:text-brand-white
+              hover:underline
+              text-base
+            "
+            @click="changeFairValueCalcTime(10)"
+            >10Y</span
+          >
+        </div>
+      </div>
+    </div>
   </div>
 </template>
 <script>
@@ -266,6 +266,7 @@ export default {
       var income = [];
       var fvDiv = [];
       var dividend = [];
+      console.log(this.yearsToBeCalced);
       this.yearsToBeCalced.forEach((x) => {
         fvIcome.push([
           new Date(parseInt(x), 11, 31).getTime(),

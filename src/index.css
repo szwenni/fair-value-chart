@@ -23,6 +23,14 @@
     color: black;
   }
 
+  .apexcharts-toolbar {
+    max-width: 100%;
+}
+
+.apexcharts-toolbar-custom-icon {
+  width: auto !important;
+}
+
  .dark .apexcharts-tooltip {
     background: #2d3748;
     color: white;
