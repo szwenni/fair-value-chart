@@ -25,6 +25,8 @@
 
   .apexcharts-toolbar {
     max-width: 100%;
+    right: 0px !important;
+    padding-right: 2.5rem !important;
 }
 
 .apexcharts-toolbar-custom-icon {

@@ -1,8 +1,15 @@
 
 <template>
+  <div class="flex flex-row">
+    <div class="justify-left w-full pl-10">
+      <h2 class="sm:pr-0 text-lg font-bold pb-2 mb-4">
+        3M Fair Value <span class="cursor-pointer text-gray-500"> ⓘ</span>
+      </h2>
+    </div>
+  </div>
   <div class="flex flew-row w-full">
-    <div class="justify-center w-full p-10" id="chartplh">
-      <div class="apexcharts-toolbar" style="top: 0px; right: 3px">
+    <div class="justify-center w-full px-10 py-2" id="chartplh">
+      <div class="apexcharts-toolbar pr-10-important" style="right: 0px">
         <div class="apexcharts-toolbar-custom-icon">
           <span
             class="
@@ -291,6 +298,17 @@ export default {
 
       var series = [
         {
+          name: "Gewinn",
+          data: income,
+          type: "area",
+        },
+
+        {
+          name: "Dividende",
+          data: dividend,
+          type: "area",
+        },
+        {
           name: "Fair Value bil. Gewinn",
           data: fvIcome,
           type: "line",
@@ -303,18 +321,6 @@ export default {
         {
           name: "Kurs",
           data: stockData,
-          type: "area",
-        },
-
-        {
-          name: "Gewinn",
-          data: income,
-          type: "area",
-        },
-
-        {
-          name: "Dividende",
-          data: dividend,
           type: "area",
         },
       ];
@@ -339,7 +345,7 @@ export default {
           },
         },
         fill: {
-          opacity: [1, 1, 0.1, 0.1, 0.1],
+          opacity: [0.1, 0.1, 1, 1, 0.1],
           gradient: {
             inverseColors: false,
             shade: "light",
@@ -349,12 +355,17 @@ export default {
             stops: [0, 100, 100, 100],
           },
         },
-        colors: ["#e24158", "#a9cef2", "#67a3ff", "#eb8693", "#c5dcf2"],
+        colors: ["#8294dc", "#eb8693", "#3d5bce", "#e24158", "#67a3ff"],
         legend: {
           show: true,
           showForSingleSeries: true,
           labels: {
             colors: color,
+          },
+          position: "top",
+          horizontalAlign: "left",
+          markers: {
+            radius: 0,
           },
         },
         series: series,
@@ -369,6 +380,36 @@ export default {
           curve: "smooth",
         },
         yaxis: [
+          {
+            seriesName: "Gewinn",
+            opposite: true,
+            labels: {
+              style: {
+                colors: color,
+              },
+              formatter: (value) => {
+                return new Intl.NumberFormat("de-DE", {
+                  style: "currency",
+                  currency: "USD",
+                }).format(value);
+              },
+            },
+          },
+          {
+            seriesName: "Gewinn",
+            show: false,
+            labels: {
+              style: {
+                colors: color,
+              },
+              formatter: (value) => {
+                return new Intl.NumberFormat("de-DE", {
+                  style: "currency",
+                  currency: "USD",
+                }).format(value);
+              },
+            },
+          },
           {
             seriesName: "Fair Value bil. Gewinn",
 
@@ -401,36 +442,6 @@ export default {
           },
           {
             seriesName: "Fair Value bil. Gewinn",
-            show: false,
-            labels: {
-              style: {
-                colors: color,
-              },
-              formatter: (value) => {
-                return new Intl.NumberFormat("de-DE", {
-                  style: "currency",
-                  currency: "USD",
-                }).format(value);
-              },
-            },
-          },
-          {
-            seriesName: "Gewinn",
-            opposite: true,
-            labels: {
-              style: {
-                colors: color,
-              },
-              formatter: (value) => {
-                return new Intl.NumberFormat("de-DE", {
-                  style: "currency",
-                  currency: "USD",
-                }).format(value);
-              },
-            },
-          },
-          {
-            seriesName: "Gewinn",
             show: false,
             labels: {
               style: {
