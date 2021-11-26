@@ -7,75 +7,74 @@
       </h2>
     </div>
   </div>
-  <div class="flex flew-row w-full">
-    <div class="justify-center w-full px-10 py-2" id="chartplh">
-      <div class="apexcharts-toolbar" style="">
-        <div class="apexcharts-toolbar-custom-icon">
-          <span
-            class="
-              custom-toolbar-icon
-              custom-icon__10y
-              mr-2
-              inline-block
-              text-gray-800
-              dark:text-brand-white
-              hover:underline
-              text-base
-            "
-            @click="changeFairValueCalcTime(1)"
-            >1Y</span
-          >
-        </div>
-        <div class="apexcharts-toolbar-custom-icon">
-          <span
-            class="
-              custom-toolbar-icon
-              custom-icon__10y
-              mr-2
-              inline-block
-              text-gray-800
-              dark:text-brand-white
-              hover:underline
-              text-base
-            "
-            @click="changeFairValueCalcTime(3)"
-            >3Y</span
-          >
-        </div>
-        <div class="apexcharts-toolbar-custom-icon">
-          <span
-            class="
-              custom-toolbar-icon
-              custom-icon__10y
-              mr-2
-              inline-block
-              text-gray-800
-              dark:text-brand-white
-              hover:underline
-              text-base
-            "
-            @click="changeFairValueCalcTime(5)"
-            >5Y</span
-          >
-        </div>
-        <div class="apexcharts-toolbar-custom-icon">
-          <span
-            class="
-              custom-toolbar-icon
-              custom-icon__10y
-              mr-2
-              inline-block
-              text-gray-800
-              dark:text-brand-white
-              hover:underline
-              text-base
-            "
-            @click="changeFairValueCalcTime(10)"
-            >10Y</span
-          >
-        </div>
-      </div>
+  <div class="apexcharts-toolbar" style="">
+    <div class="apexcharts-toolbar-custom-icon">
+      <span
+        class="
+          custom-toolbar-icon
+          custom-icon__10y
+          mr-2
+          inline-block
+          text-gray-800
+          dark:text-brand-white
+          hover:underline
+          text-base
+        "
+        @click="changeFairValueCalcTime(1)"
+        >1Y</span
+      >
     </div>
+    <div class="apexcharts-toolbar-custom-icon">
+      <span
+        class="
+          custom-toolbar-icon
+          custom-icon__10y
+          mr-2
+          inline-block
+          text-gray-800
+          dark:text-brand-white
+          hover:underline
+          text-base
+        "
+        @click="changeFairValueCalcTime(3)"
+        >3Y</span
+      >
+    </div>
+    <div class="apexcharts-toolbar-custom-icon">
+      <span
+        class="
+          custom-toolbar-icon
+          custom-icon__10y
+          mr-2
+          inline-block
+          text-gray-800
+          dark:text-brand-white
+          hover:underline
+          text-base
+        "
+        @click="changeFairValueCalcTime(5)"
+        >5Y</span
+      >
+    </div>
+    <div class="apexcharts-toolbar-custom-icon">
+      <span
+        class="
+          custom-toolbar-icon
+          custom-icon__10y
+          mr-2
+          inline-block
+          text-gray-800
+          dark:text-brand-white
+          hover:underline
+          text-base
+        "
+        @click="changeFairValueCalcTime(10)"
+        >10Y</span
+      >
+    </div>
+  </div>
+  <div class="flex flew-row w-full">
+    <div class="justify-center w-full px-10 py-2" id="chartplh"></div>
   </div>
 </template>
 <script>
@@ -298,8 +297,6 @@ export default {
         income.push([new Date(x.year, 11, 31, 5).getTime(), x.bilIcomePS]);
         dividend.push([new Date(x.year, 11, 31, 5).getTime(), x.dividend]);
       });
-      console.log(this.incomePerYear);
-      console.log(this.fairValuesPerYear);
       var series = [
         {
           name: "Gewinn",
@@ -423,7 +420,6 @@ export default {
               (date.getMonth() + 1) +
               "." +
               date.getFullYear();
-            console.log(w.globals);
             return `
                       <div class="apexcharts-tooltip-title" style="font-family: Helvetica, Arial, sans-serif; font-size: 12px;">${formatHoverX}</div>
                       ${hoverList}`;
