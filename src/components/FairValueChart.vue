@@ -418,6 +418,27 @@ export default {
               let newIndex = w.globals.seriesX[i].findIndex(
                 (xData) => xData == newHoverXAxis
               );
+              if (newIndex == -1) {
+                newIndex = w.globals.seriesX[i].findIndex(
+                  (xData) =>
+                    xData > newHoverXAxis &&
+                    new Date(xData).getFullYear() ==
+                      new Date(newHoverXAxis).getFullYear()
+                );
+              }
+              if (newIndex == -1) {
+                var index = w.globals.seriesX[i].length - 1;
+                for (; index >= 0; index--) {
+                  if (
+                    w.globals.seriesX[i] < newHoverXAxis &&
+                    new Date(w.globals.seriesX[i]).getFullYear() ==
+                      new Date(newHoverXAxis).getFullYear()
+                  ) {
+                    newIndex = w.globals.seriesX[i];
+                    break;
+                  }
+                }
+              }
               if (newIndex != -1) {
                 return newIndex;
               } else {
@@ -425,6 +446,11 @@ export default {
               }
             });
             let hoverList = "";
+            if (newHoverXAxis > Date.now()) {
+              newHoverXAxis = Date.now();
+            }
+            //let newHoverDate = new Date(newHoverXAxis);
+            let orginalHoverDate = new Date(hoverXaxis);
             hoverIndexes.forEach((hoverIndex, seriesEachIndex) => {
               if (hoverIndex >= 0) {
                 hoverList += `<div class="apexcharts-tooltip-series-group apexcharts-active" style="order: ${
@@ -434,9 +460,17 @@ export default {
                 hoverList += `  <div class="apexcharts-tooltip-text" style="font-family: Helvetica, Arial, sans-serif; font-size: 12px;">`;
                 hoverList += `    <div class="apexcharts-tooltip-y-group">`;
                 hoverList += `     <span class="apexcharts-tooltip-text-y-label">${w.globals.seriesNames[seriesEachIndex]}: </span>`;
-                hoverList += `      <span class="apexcharts-tooltip-text-y-value">${series[
-                  seriesEachIndex
-                ][hoverIndex].toFixed(2)}&nbsp;$</span>`;
+                if (w.globals.seriesNames[seriesEachIndex] != "Kurs") {
+                  hoverList += `      <span class="apexcharts-tooltip-text-y-value">${series[
+                    seriesEachIndex
+                  ][hoverIndex].toFixed(
+                    2
+                  )}&nbsp;$ (${orginalHoverDate.getFullYear()})</span>`;
+                } else {
+                  hoverList += `      <span class="apexcharts-tooltip-text-y-value">${series[
+                    seriesEachIndex
+                  ][hoverIndex].toFixed(2)}&nbsp;$</span>`;
+                }
                 hoverList += `    </div>`;
                 hoverList += `    <div class="apexcharts-tooltip-goals-group">
                                     <span class="apexcharts-tooltip-text-goals-label"></span>
@@ -451,16 +485,13 @@ export default {
                             `;
               }
             });
-            if (newHoverXAxis > Date.now()) {
-              newHoverXAxis = Date.now();
-            }
-            let date = new Date(newHoverXAxis);
+
             const formatHoverX =
-              date.getDate() +
+              orginalHoverDate.getDate() +
               "." +
-              (date.getMonth() + 1) +
+              (orginalHoverDate.getMonth() + 1) +
               "." +
-              date.getFullYear();
+              orginalHoverDate.getFullYear();
             return `
                       <div class="apexcharts-tooltip-title" style="font-family: Helvetica, Arial, sans-serif; font-size: 12px;">${formatHoverX}</div>
                       ${hoverList}`;
@@ -558,6 +589,7 @@ export default {
         ],
         xaxis: {
           type: "datetime",
+          tickPlacement: "between",
           labels: {
             style: {
               colors: color,
