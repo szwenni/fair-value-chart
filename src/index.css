@@ -33,6 +33,10 @@
   width: auto !important;
 }
 
+.apexcharts-xaxistooltip {
+  display: none;
+}
+
  .dark .apexcharts-tooltip {
     background: #2d3748;
     color: white;
